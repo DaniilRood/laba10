@@ -1,0 +1,36 @@
+@startuml
+title Добавление научного сотрудника в проект
+
+actor Dean as dean
+participant Project as project
+participant Research as researcher
+participant "ProjectParticipation" as participation
+
+dean -> project : addParticipant(researcher, hours)
+activate project
+
+project -> researcher : getEmployeeData()
+activate researcher
+
+researcher --> project : return data(name, email, researchArea)
+deactivate researcher
+
+project -> researcher : createParticipation(this, hours)
+activate researcher
+
+researcher -> participation : **new** Participation(researcher, project, hours)
+activate participation
+
+researcher --> project : participation
+deactivate researcher
+
+project -> participation : addToList()
+activate participation
+
+participation --> project : confirmation
+deactivate participation
+
+project --> dean : Участник успешно добавлен
+deactivate project
+
+@enduml

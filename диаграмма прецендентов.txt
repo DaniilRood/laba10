@@ -1,0 +1,31 @@
+@startuml
+left to right direction
+
+actor "Dean" as Dean
+actor "Research" as Research
+actor "Administrative" as Admin
+actor "Lecturer" as Lecturer
+
+rectangle "Университетская информационная система" {
+  (Управление факультетами) as UC1
+  (Назначение декана) as UC2
+  (Прикрепление сотрудника к кафедре) as UC3
+  (Регистрация в проекте) as UC4
+  (Назначение курса преподавателю) as UC5
+  
+  Dean --> UC1
+  Dean --> UC2
+  Admin --> UC3
+  Research --> UC4
+  Lecturer --> UC5
+  
+  UC3 .> UC1 : extends
+  UC5 .> UC1 : extends
+}
+
+note right of Dean : Декан факультета
+note bottom of Research : Научный сотрудник
+note bottom of Admin : Административный\nперсонал
+note bottom of Lecturer : Преподаватель\n(специализация Research)
+
+@enduml
